@@ -29,7 +29,7 @@ You can submit issues through GitHub, through Eclipse Bugzilla, or on the mailin
 * [Eclipse Whiskers Issue List](https://bugs.eclipse.org/bugs/buglist.cgi?component=General&product=Whiskers&resolution=---)
 * [File a new Eclipse Whiskers Bug/Issue](https://bugs.eclipse.org/bugs/enter_bug.cgi?product=Whiskers)
 
-## Eclipse Mailing List
+### Eclipse Mailing List
 
 * [Whiskers Mailing List](https://dev.eclipse.org/mailman/listinfo/whiskers-dev)
 
