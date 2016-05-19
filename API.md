@@ -29,7 +29,7 @@ Creating a new Backend is done with the URL of the instance.
 
 #### getLinks()
 
-Returns an object containing key-value pairs for the SensorThings collections on the remote host. Will execute a GET request on the first call, and use a cached value on subsequent calls.
+Returns an object containing key-value pairs for the SensorThings collections on the remote host. Will execute a GET request on the first call, and use a cached value on subsequent calls. Returns a Q promise with the links object or the links object if already cached.
 
 ````javascript
     {
@@ -49,15 +49,15 @@ This is used internally in the Backend class for accessing collections without h
 
 ### getRoot()
 
-Retrieves the response body from the SensorThings root collection path.
+Retrieves the response body from the SensorThings root collection path. Returns a Q promise with the JQuery jqXHR object.
 
 ### getThing(id, options)
 
-Retrieves the Thing resource from SensorThings with the corresponding `id` and returns a Thing instance. `options` is passed to JQuery's Ajax method.
+Retrieves the Thing resource from SensorThings with the corresponding `id` and returns a Thing instance. `options` is passed to JQuery's Ajax method.  Returns a Q promise with the Thing object.
 
 ### getThings(options)
 
-Retrieves the Things collection resource from SensorThings and returns an array of Thing instances. `options` is passed to JQuery's Ajax method.
+Retrieves the Things collection resource from SensorThings and returns an array of Thing instances. `options` is passed to JQuery's Ajax method.  Returns a Q promise with the array of Thing objects.
 
 If the remote SensorThings server applies a limit to the response then only that many entities will be returned in the array.
 
