@@ -1,0 +1,21 @@
+{
+  "name": "eclipse-whiskers",
+  "version": "0.0.0",
+  "description": "Eclipse IoT library for SensorThings client/server",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eclipse/whiskers.git"
+  },
+  "keywords": [
+    "Eclipse",
+    "IoT",
+    "SensorThings"
+  ],
+  "author": "Eclipse Whiskers contributors",
+  "license": "EPL-1.0",
+  "bugs": {
+    "url": "https://github.com/eclipse/whiskers/issues"
+  },
+  "homepage": "https://eclipse.org/whiskers/"
+}
