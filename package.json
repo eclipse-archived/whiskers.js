@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/eclipse/whiskers/issues"
   },
-  "homepage": "https://eclipse.org/whiskers/"
+  "homepage": "https://eclipse.org/whiskers/",
+  "dependencies": {
+    "jquery": "^2.2.3"
+  }
 }
