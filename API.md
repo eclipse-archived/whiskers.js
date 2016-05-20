@@ -103,7 +103,7 @@ Create a new Datastream with an object containing the attribute keys of a Sensor
 
 There is currently no validation of the attributes added in this contructor, so it is possible to add invalid SensorThings attributes to a Datastream instance.
 
-This does not create an instance on the remote server, only a local object.
+This **does not** create an instance on the remote server, only a local object.
 
 #### `Datastream.get()`/`Datastream.set()`
 
@@ -179,4 +179,46 @@ To create or update an attribute, call `set()` with the key and value:
 
 ````javascript
     object.set("property", 100);
+````
+
+### Location
+
+This class represents the Location model in the SensorThings specification (section 8.3.2). A Location is a geographic entity that is used to geo-reference one or more Thing entities.
+
+#### `new Location(data)`
+
+Create a new Location with an object containing the attribute keys of a SensorThings Location entity.
+
+````javascript
+    var location = new Location({
+      "@iot.id": 1,
+      "@iot.selfLink": "http://example.org/v1.0/Locations(1)",
+      "Things@iot.navigationLink": "Locations(1)/Things",
+      "HistoricalLocations@iot.navigationLink": "Locations(1)/HistoricalLocations",
+      "encodingType": "application/vnd.geo+json",
+      "location": {
+        "type": "Point",
+        "coordinates": [-114.06, 51.05]
+      }
+    });
+````
+
+There is currently no validation of the attributes added in this contructor, so it is possible to add invalid SensorThings attributes to a Location instance.
+
+This **does not** create an instance on the remote server, only a local object.
+
+#### `Location.get()`/`Location.set()`
+
+As Location is a Generic-type model class, it has the `get` and `set` methods for accessing the entity attributes. Entity attributes are **separate** from JavaScript object properties and are stored in the `Location.attributes` object.
+
+To retrieve an attribute, call `get()` with the key:
+
+````javascript
+    var selfLink = location.get("@iot.selfLink");
+````
+
+To create or update an attribute, call `set()` with the key and value:
+
+````javascript
+    location.set("location", geoJSONObject);
 ````
