@@ -222,3 +222,42 @@ To create or update an attribute, call `set()` with the key and value:
 ````javascript
     location.set("location", geoJSONObject);
 ````
+
+### Observation
+
+This class represents the Observation model in the SensorThings specification (section 8.3.7). An Observation is an act of measuring or otherwise determining the value of a property (Observed Property).
+
+#### `new Observation(data)`
+
+Create a new Observation with an object containing the attribute keys of a SensorThings Observation entity.
+
+````javascript
+    var observation = new Observation({
+      "@iot.id": 1,
+      "@iot.selfLink": "http://example.org/v1.0/Observations(1)",
+      "FeatureOfInterest@iot.navigationLink": "Observations(1)/FeatureOfInterest", "Datastream@iot.navigationLink":"Observations(1)/Datastream",
+      "phenomenonTime": "2014-12-31T11:59:59.00+08:00",
+      "resultTime": "2014-12-31T11:59:59.00+08:00",
+      "result": 70.4
+    });
+````
+
+There is currently no validation of the attributes added in this contructor, so it is possible to add invalid SensorThings attributes to a Observation instance.
+
+This **does not** create an instance on the remote server, only a local object.
+
+#### `Observation.get()`/`Observation.set()`
+
+As Observation is a Generic-type model class, it has the `get` and `set` methods for accessing the entity attributes. Entity attributes are **separate** from JavaScript object properties and are stored in the `Observation.attributes` object.
+
+To retrieve an attribute, call `get()` with the key:
+
+````javascript
+    var selfLink = observation.get("@iot.selfLink");
+````
+
+To create or update an attribute, call `set()` with the key and value:
+
+````javascript
+    observation.set("result", 0);
+````
