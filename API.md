@@ -2,6 +2,8 @@
 
 This document will explain the classes and methods in the Eclipse Whiskers client library.
 
+**This is a very early version of the API. It may change considerably before being stabilized.** If you are using an early version it is a very good idea to lock to a specific version of Whiskers — a loose version constraint could cause you to unintentionally upgrade to an incompatible version of the API. This is not a good experience and we plan to have a stable API at version 1.0 that does not introduce breaking changes.
+
 ## Models
 
 There are currently 8 models in the client library.
