@@ -261,3 +261,42 @@ To create or update an attribute, call `set()` with the key and value:
 ````javascript
     observation.set("result", 0);
 ````
+
+### ObservedProperty
+
+This class represents the ObservedProperty model in the SensorThings specification (section 8.3.6). An ObservedProperty specifies the phenomenon of an Observation.
+
+#### `new ObservedProperty(data)`
+
+Create a new ObservedProperty with an object containing the attribute keys of a SensorThings ObservedProperty entity.
+
+````javascript
+    var observedProperty = new ObservedProperty({
+      "@iot.id": 1,
+      "@iot.selfLink": "http://example.org/v1.0/ObservedProperties(1)",
+      "Datastreams@iot.navigationLink": "ObservedProperties(1)/Datastreams",
+      "description": "The dewpoint temperature is the temperature to which the air must be cooled, at constant pressure, for dew to form. As the grass and other objects near the ground cool to the dewpoint, some of the water vapor in the atmosphere condenses into liquid water on the objects.",
+      "name": "DewPoint Temperature",
+      "definition": "http://dbpedia.org/page/Dew_point"
+    });
+````
+
+There is currently no validation of the attributes added in this contructor, so it is possible to add invalid SensorThings attributes to a ObservedProperty instance.
+
+This **does not** create an instance on the remote server, only a local object.
+
+#### `ObservedProperty.get()`/`ObservedProperty.set()`
+
+As ObservedProperty is a Generic-type model class, it has the `get` and `set` methods for accessing the entity attributes. Entity attributes are **separate** from JavaScript object properties and are stored in the `ObservedProperty.attributes` object.
+
+To retrieve an attribute, call `get()` with the key:
+
+````javascript
+    var selfLink = observedProperty.get("@iot.selfLink");
+````
+
+To create or update an attribute, call `set()` with the key and value:
+
+````javascript
+    observedProperty.set("description", "Pedestrian foot traffic");
+````
