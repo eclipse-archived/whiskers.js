@@ -242,7 +242,7 @@ Create a new Observation with an object containing the attribute keys of a Senso
     });
 ````
 
-There is currently no validation of the attributes added in this contructor, so it is possible to add invalid SensorThings attributes to a Observation instance.
+There is currently no validation of the attributes added in this contructor, so it is possible to add invalid SensorThings attributes to an Observation instance.
 
 This **does not** create an instance on the remote server, only a local object.
 
@@ -281,7 +281,7 @@ Create a new ObservedProperty with an object containing the attribute keys of a 
     });
 ````
 
-There is currently no validation of the attributes added in this contructor, so it is possible to add invalid SensorThings attributes to a ObservedProperty instance.
+There is currently no validation of the attributes added in this contructor, so it is possible to add invalid SensorThings attributes to an ObservedProperty instance.
 
 This **does not** create an instance on the remote server, only a local object.
 
@@ -299,4 +299,43 @@ To create or update an attribute, call `set()` with the key and value:
 
 ````javascript
     observedProperty.set("description", "Pedestrian foot traffic");
+````
+
+### Sensor
+
+This class represents the Sensor model in the SensorThings specification (section 8.3.5). A Sensor is an instrument that observes a property or phenomenon with the goal of producing an estimate of the value of the property.
+
+#### `new Sensor(data)`
+
+Create a new Sensor with an object containing the attribute keys of a SensorThings Sensor entity.
+
+````javascript
+    var sensor = new Sensor({
+      "@iot.id": 1,
+      "@iot.selfLink": "http://example.org/v1.0/Sensors(1)",
+      "Datastreams@iot.navigationLink": "Sensors(1)/Datastreams",
+      "description": "TMP36 - Analog Temperature sensor",
+      "encodingType": "application/pdf",
+      "metadata": "http://example.org/TMP35_36_37.pdf"
+    });
+````
+
+There is currently no validation of the attributes added in this contructor, so it is possible to add invalid SensorThings attributes to a Sensor instance.
+
+This **does not** create an instance on the remote server, only a local object.
+
+#### `Sensor.get()`/`Sensor.set()`
+
+As Sensor is a Generic-type model class, it has the `get` and `set` methods for accessing the entity attributes. Entity attributes are **separate** from JavaScript object properties and are stored in the `Sensor.attributes` object.
+
+To retrieve an attribute, call `get()` with the key:
+
+````javascript
+    var selfLink = sensor.get("@iot.selfLink");
+````
+
+To create or update an attribute, call `set()` with the key and value:
+
+````javascript
+    sensor.set("description", "Generic Webcam 3C Model");
 ````
