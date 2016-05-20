@@ -339,3 +339,58 @@ To create or update an attribute, call `set()` with the key and value:
 ````javascript
     sensor.set("description", "Generic Webcam 3C Model");
 ````
+
+### Thing
+
+This class represents the Thing model in the SensorThings specification (section 8.3.1). The OGC SensorThings API follows the ITU-T definition, i.e., with regard to the Internet of Things, a thing is an object of the physical world (physical things) or the information world (virtual things) that is capable of being identified and integrated into communication networks.
+
+#### `new Thing(data)`
+
+Create a new Thing with an object containing the attribute keys of a SensorThings Thing entity.
+
+````javascript
+    var thing = new Thing({
+      "@iot.id": 1,
+      "@iot.selfLink": "http://example.org/v1.0/Things(1)",
+      "Locations@iot.navigationLink": "Things(1)/Locations",
+      "Datastreams@iot.navigationLink": "Things(1)/Datastreams",
+      "HistoricalLocations@iot.navigationLink": "Things(1)/HistoricalLocations",
+      "description": "This thing is an oven.",
+      "properties": {
+        "owner": "John Doe",
+        "color": "Silver"
+      }
+    });
+````
+
+There is currently no validation of the attributes added in this contructor, so it is possible to add invalid SensorThings attributes to a Thing instance.
+
+This **does not** create an instance on the remote server, only a local object.
+
+#### `Thing.get()`/`Thing.set()`
+
+As Thing is a Generic-type model class, it has the `get` and `set` methods for accessing the entity attributes. Entity attributes are **separate** from JavaScript object properties and are stored in the `Thing.attributes` object.
+
+To retrieve an attribute, call `get()` with the key:
+
+````javascript
+    var selfLink = thing.get("@iot.selfLink");
+````
+
+To create or update an attribute, call `set()` with the key and value:
+
+````javascript
+    thing.set("description", "Monitoring Site 3050");
+````
+
+#### `Thing.getDatastreams(options)`
+
+Retrieves the Datastreams collection resource from SensorThings for this Thing entity. Returns a Q promise with an array of Datastream objects.
+
+Use `options` to pass in an object that is compatible with [JQuery's ajax settings object](http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings). The `options` parameter can be safely omitted.
+
+#### `Thing.getLocations(options)`
+
+Retrieves the Locations collection resource from SensorThings for this Thing entity. Returns a Q promise with an array of Location objects.
+
+Use `options` to pass in an object that is compatible with [JQuery's ajax settings object](http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings). The `options` parameter can be safely omitted.
