@@ -47,19 +47,19 @@ Returns an object containing key-value pairs for the SensorThings collections on
 
 This is used internally in the Backend class for accessing collections without having the paths hard-coded.
 
-### `Backend.getRoot(options)`
+#### `Backend.getRoot(options)`
 
 Retrieves the response body from the SensorThings root collection path. Returns a Q promise with the JQuery jqXHR object.
 
 Use `options` to pass in an object that is compatible with [JQuery's ajax settings object](http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings). The `options` parameter can be safely omitted.
 
-### `Backend.getThing(id, options)`
+#### `Backend.getThing(id, options)`
 
 Retrieves the Thing resource from SensorThings with the corresponding `id` and returns a Thing instance. Returns a Q promise with the Thing object.
 
 Use `options` to pass in an object that is compatible with [JQuery's ajax settings object](http://api.jquery.com/jquery.ajax/#jQuery-ajax-settings). The `options` parameter can be safely omitted.
 
-### `Backend.getThings(options)`
+#### `Backend.getThings(options)`
 
 Retrieves the Things collection resource from SensorThings and returns an array of Thing instances. Returns a Q promise with the array of Thing objects.
 
@@ -153,4 +153,28 @@ Use `options` to pass in an object that is compatible with [JQuery's ajax settin
       // do something with observations
     })
     .done();
+````
+
+### Generic
+
+This class is a base class for SensorThing entity classes. It only implements a getter/setter for the entity's attributes, and will set the attributes on creation. This class isn't likely to be used often directly and should instead be subclassed as per [ECMAScript 6](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes).
+
+#### `new Generic(data)`
+
+Creates a new object with the object's `attributes` property as an object equal to `data`.
+
+#### `Generic.get()`/`Generic.set()`
+
+Get and Set are methods for accessing the attributes object. Entity attributes are **separate** from JavaScript object properties and are stored in the `Generic.attributes` object.
+
+To retrieve an attribute, call `get()` with the key:
+
+````javascript
+    var selfLink = object.get("@iot.selfLink");
+````
+
+To create or update an attribute, call `set()` with the key and value:
+
+````javascript
+    object.set("property", 100);
 ````
