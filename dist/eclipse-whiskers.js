@@ -288,3 +288,4 @@ global.EclipseWhiskers = require('./index.js');
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./index.js":1}]},{},[10])
+//# sourceMappingURL=eclipse-whiskers.js.map

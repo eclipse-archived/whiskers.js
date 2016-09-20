@@ -90,12 +90,15 @@ The web compatible version in `dist/eclipse-whiskers.js` can be built from the s
 
     $ npm install
     $ npm install -g browserify
+    $ npm install -g exorcist
 
 Then use Browserify to convert the require statements into globals (see `browserify-shim` section in `package.json` for that configuration) and to convert from ES2015 to ES5 using `babelify`.
 
-    $ browserify --transform browserify-shim --transform babelify --presets es2015 lib/shim.js > dist/eclipse-whiskers.js
+    $ browserify --debug --transform browserify-shim --transform babelify --presets es2015 lib/shim.js | exorcist dist/eclipse-whiskers.js.map > dist/eclipse-whiskers.js
 
-This code should be updated regularly, and must be updated for any versioned release of Eclipse Whiskers.
+The command is also ran through [exorcist](https://github.com/thlorenz/exorcist), which creates a separate JavaScript source map file. Having a source map file can make debugging Whiskers easier in the web browser, as the source will be displayed without minification.
+
+This web version code should be updated regularly, and must be updated for any versioned release of Eclipse Whiskers.
 
 If any ES2016 or ES next features are used in the source, then preset packages for babelify will need to be added — please see the [babelify documentation](https://github.com/babel/babelify/blob/v7.3.0/README.md) for instructions.
 
