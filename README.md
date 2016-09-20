@@ -10,7 +10,7 @@ More details can be found on the [Eclipse Whiskers Project](http://eclipse.org/w
 
 ## Using Eclipse Whiskers
 
-Eclipse Whiskers is still in an early development stage. We will soon be updating this README document with a guide on using both the Client Library and Server Module. Hang tight!
+Eclipse Whiskers is still in an early development stage, so some details may change as we stabilize the API before version 1.0.
 
 ### Using with Node.js
 
@@ -18,7 +18,7 @@ This library can be used with the Node.js version of CommonJS to include all the
 
     $ npm install --save eclipse/whiskers#3df4601e98b9dc4c343d20d3e40d582ff021cc40
 
-A module hosted by NPM will be coming at a later date. This forces a specific commit to be used, which is highly recommended when referencing a Git repository as a new commit may come in that adds an unexpected behaviour. In the future this will be handled with the NPM module and by using semantic versioning.
+A module hosted by NPM will be coming at a later date. Instead of referencing the master branch, this command forces a specific commit to be used, which is highly recommended when referencing a Git repository as a new commit may come in that adds an unexpected behaviour. In the future this will be handled with the NPM module and by using semantic versioning.
 
 Once Eclipse Whiskers is added to your `node_modules` directory, it can be used in your Node application:
 
@@ -38,6 +38,26 @@ At the moment, the following classes will be available:
 * `Thing`
 
 More classes will be added as the API matures. For more details on using these classes, please see the API documentation.
+
+### Using with Web Browsers
+
+The main Eclipse Whiskers library source files are written for Node.js and use `require` statements and ES2015 modules. These are not compatible with most browsers and requiring the files in an HTML script tag will not work.
+
+If you are using Browserify or Webpack in your web application, you could use that to bundle Eclipse Whiskers into your application by requiring it in your code:
+
+    var EclipseWhiskers = require('eclipse-whiskers');
+
+This will bundle a self-contained version of Eclipse Whiskers **with** jQuery and Q inside. You will also have to run a ES2015 transpiler such as Babel to convert the code to be supported in most web browsers.
+
+**Instead**, I recommend you use the web version of Eclipse Whiskers that is pre-compiled for ES5 (most semi-recent web browsers support ES5). This version does not include jQuery and Q inside, those must be available in the global namespace. The file is contained in `dist/eclipse-whiskers.js` and can be used in a script tag:
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/q.js/1.4.1/q.js"></script>
+    <script src="vendor/eclipse-whiskers.js"></script>
+
+Note that jQuery and Q must be included before Eclipse Whiskers. A global variable `EclipseWhiskers` will be made available that provides access to the API. The API documentation in `API.md` goes into more detail on its usage.
+
+Note that Eclipse Whiskers has not been tested with Q version 2.0 or newer, nor with jQuery version 3.0 or newer.
 
 ## Versioning
 
@@ -63,6 +83,26 @@ You can submit issues through GitHub, through Eclipse Bugzilla, or on the mailin
 ## License
 
 Whiskers is available under the Eclipse Public License Version 1.0.
+
+## Building Web Versions
+
+The web compatible version in `dist/eclipse-whiskers.js` can be built from the source in `lib` using Browserify. First install the development dependencies for Eclipse Whiskers:
+
+    $ npm install
+
+Then use Browserify to convert the require statements into globals (see `browserify-shim` section in `package.json` for that configuration) and to convert from ES2015 to ES5 using `babelify`.
+
+    $ browserify --transform browserify-shim --transform babelify --presets es2015 lib/shim.js > dist/eclipse-whiskers.js
+
+This code should be updated regularly, and must be updated for any versioned release of Eclipse Whiskers.
+
+If any ES2016 or ES next features are used in the source, then preset packages for babelify will need to be added — please see the [babelify documentation](https://github.com/babel/babelify/blob/v7.3.0/README.md) for instructions.
+
+### Why use browserify-shim?
+
+Without it, Browserify will go ahead and include a copy of jQuery and Q inside the output file. This is nice, but if you already have jQuery or Q included in your application then you have two copies, which is a waste of bandwidth. So instead we use browserify-shim to replace those require statements with references to global variables.
+
+An exception can be made though if you are using versions of jQuery or Q that are incompatible with Eclipse Whiskers, and in that case it would be better to not use the web version and to use Browserify and Babel on the Node.js version of Eclipse Whiskers instead.
 
 ## Contributing
 
