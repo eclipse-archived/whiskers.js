@@ -89,6 +89,7 @@ Whiskers is available under the Eclipse Public License Version 1.0.
 The web compatible version in `dist/eclipse-whiskers.js` can be built from the source in `lib` using Browserify. First install the development dependencies for Eclipse Whiskers:
 
     $ npm install
+    $ npm install -g browserify
 
 Then use Browserify to convert the require statements into globals (see `browserify-shim` section in `package.json` for that configuration) and to convert from ES2015 to ES5 using `babelify`.
 
