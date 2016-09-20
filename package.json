@@ -21,5 +21,8 @@
   "dependencies": {
     "jquery": "^2.2.3",
     "q": "^1.4.1"
+  },
+  "devDependencies": {
+    "browserify": "^13.1.0"
   }
 }
