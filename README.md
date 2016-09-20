@@ -12,6 +12,33 @@ More details can be found on the [Eclipse Whiskers Project](http://eclipse.org/w
 
 Eclipse Whiskers is still in an early development stage. We will soon be updating this README document with a guide on using both the Client Library and Server Module. Hang tight!
 
+### Using with Node.js
+
+This library can be used with the Node.js version of CommonJS to include all the library sub-modules as a single namespaced object. First add eclipse-whiskers as a dependency from GitHub.
+
+    $ npm install --save eclipse/whiskers#3df4601e98b9dc4c343d20d3e40d582ff021cc40
+
+A module hosted by NPM will be coming at a later date. This forces a specific commit to be used, which is highly recommended when referencing a Git repository as a new commit may come in that adds an unexpected behaviour. In the future this will be handled with the NPM module and by using semantic versioning.
+
+Once Eclipse Whiskers is added to your `node_modules` directory, it can be used in your Node application:
+
+    var EclipseWhiskers = require('eclipse-whiskers');
+    var server = new EclipseWhiskers.Backend("http://example.com/v1.0/");
+    var things = server.getThings(); // returns a Q.js promise object
+
+At the moment, the following classes will be available:
+
+* `Backend`
+* `Datastream`
+* `Generic`
+* `Location`
+* `Observation`
+* `ObservedProperty`
+* `Sensor`
+* `Thing`
+
+More classes will be added as the API matures. For more details on using these classes, please see the API documentation.
+
 ## Versioning
 
 Whiskers aims to follow [Semantic Versioning](http://semver.org). This means you can expect the library to be stable on Major version numbers, with only backwards-compatible changes on Minor and Patch version number changes. An exception is made for versions before 1.0.0, where the API is unstable while our development team focuses on a unified API — that means releases before 1.0.0 may introduce breaking changes between Minor versions.
