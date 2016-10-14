@@ -121,7 +121,7 @@ To create or update an attribute, call `set()` with the key and value:
     stream.set("result", 0);
 ````
 
-#### `Datasteam.getAllObservations(options)`
+#### `Datastream.getAllObservations(options)`
 
 Iteratively retrieve *all* the observations for a Datastream from the remote server. Uses the `Observations@iot.navigationLink` attribute to determine fetch URL. Will retrieve the first set of Observations, and if `@iot.nextLink` is defined in the response, will follow that link for more Observations. This will continue until `@iot.nextLink` is not defined in a response, then an array of all the Observations collected will be returned in a promise object.
 
@@ -137,7 +137,7 @@ Use `options` to pass in an object that is compatible with [JQuery's ajax settin
 
 This method does not return until all Observations have been collected, which may take a noticeable amount of time to load for the user.
 
-#### `Datasteam.getObservations(options)`
+#### `Datastream.getObservations(options)`
 
 Retrieve the observations for a Datastream from the remote server. If the remote server has pagination, then only the initial set will be returned. Will return a Q promise object, which will resolve with an array of Observation objects.
 
